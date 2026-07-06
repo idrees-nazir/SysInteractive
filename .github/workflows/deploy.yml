@@ -23,5 +23,5 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -u "${{ secrets.SFTP_USER }},${{ secrets.SFTP_PASSWORD }}" \
-            -e "set sftp:auto-confirm yes; set ssl:verify-certificate no; mirror -R --verbose --delete --parallel=4 ./out/ /; quit" \
+            -e "set sftp:auto-confirm yes; set ssl:verify-certificate no; mirror -R --verbose --delete --parallel=4 ./out/ /sysinteractive/; quit" \
             sftp://${{ secrets.SFTP_HOST }}
