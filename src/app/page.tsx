@@ -1,11 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
 import ThreeScene from "@/components/ThreeScene";
 import CustomCursor from "@/components/CustomCursor";
 import TiltCards from "@/components/TiltCards";
 import ScrollEffects from "@/components/ScrollEffects";
 import ContactForm from "@/components/ContactForm";
+import PortfolioGrid from "@/components/PortfolioGrid";
 
 const heroMarquee = [
   "React",
@@ -196,38 +194,157 @@ const portfolio = [
   {
     size: "wide",
     bg: "linear-gradient(140deg,#1e1b4b,#4c1d95,#831843)",
-    cat: "SaaS · Full Stack",
-    title: "Analytics Dashboard Platform",
+    cat: "Home & Building Lifts · Switzerland",
+    title: "Kabinenlift.ch",
+    desc: "Panoramic home elevator systems for residential and commercial buildings.",
+    url: "https://kabinenlift.ch",
   },
   {
     size: "norm",
     bg: "linear-gradient(140deg,#172554,#0e7490)",
-    cat: "DevOps · AWS",
-    title: "Cloud Infrastructure",
+    cat: "Home Services · Switzerland",
+    title: "Treppenliftvergleich.ch",
+    desc: "Helps homeowners compare stairlift models and find the right fit.",
+    url: "https://treppenliftvergleich.ch",
   },
   {
     size: "half",
     bg: "linear-gradient(140deg,#4a044e,#1e40af)",
-    cat: "E-Commerce",
-    title: "WooCommerce Store",
+    cat: "Professional Services · Sweden",
+    title: "Officiell-Oversattning.se",
+    desc: "Official document translation by authorized, certified translators.",
+    url: "https://officiell-oversattning.se",
   },
   {
     size: "half",
     bg: "linear-gradient(140deg,#312e81,#be185d)",
-    cat: "WordPress · Elementor",
-    title: "Corporate Website",
+    cat: "Fitness · USA",
+    title: "CrossFit 60100",
+    desc: "Class schedules, membership and coaching site for a CrossFit box.",
+    url: "https://crossfit60100.com",
   },
   {
     size: "norm",
     bg: "linear-gradient(140deg,#0c4a6e,#5b21b6)",
-    cat: "Web App",
-    title: "Task Manager",
+    cat: "Creative Studio · Australia",
+    title: "Studio Sarai",
+    desc: "Handmade wood mosaic artwork studio based in Western Australia.",
+    url: "https://studiosarai.com.au",
   },
   {
     size: "wide",
     bg: "linear-gradient(140deg,#3b0764,#1d4ed8,#0e7490)",
-    cat: "Full Stack · React",
-    title: "Fintech Web Application",
+    cat: "Healthcare · Switzerland",
+    title: "Rheinskin",
+    desc: "Patient-facing site for a dermatology practice in Basel.",
+    url: "https://rheinskin.ch",
+  },
+  {
+    size: "wide",
+    bg: "linear-gradient(140deg,#4c1d95,#0369a1,#166534)",
+    cat: "Personal Brand · USA",
+    title: "Build Wealth With Douglas",
+    desc: "Personal brand site for an author, speaker and financial coach.",
+    url: "https://buildwealthwithdouglas.com",
+  },
+  {
+    size: "norm",
+    bg: "linear-gradient(140deg,#1e3a5f,#7c2d92)",
+    cat: "Telecom · Switzerland",
+    title: "Connectics.ch",
+    desc: "B2B site for a telecommunications solutions provider.",
+    url: "https://connectics.ch",
+  },
+  {
+    size: "half",
+    bg: "linear-gradient(140deg,#78350f,#831843)",
+    cat: "Logistics · USA",
+    title: "Swamp Rabbit Moving & Storage",
+    desc: "Booking and service site for a local moving & storage company.",
+    url: "https://swamprabbitmoving.com",
+  },
+  {
+    size: "half",
+    bg: "linear-gradient(140deg,#164e63,#4c1d95)",
+    cat: "Education · USA",
+    title: "Thrive Healthcare Academy",
+    desc: "CNA training program enrollment and course information site.",
+    url: "https://thrivehca.com",
+  },
+  {
+    size: "norm",
+    bg: "linear-gradient(140deg,#365314,#155e75)",
+    cat: "Home Services · USA",
+    title: "A Plus Appliances",
+    desc: "Service booking site for a local appliance repair company.",
+    url: "https://aplusappliancesca.com",
+  },
+  {
+    size: "wide",
+    bg: "linear-gradient(140deg,#1e1b4b,#0e7490,#166534)",
+    cat: "EV / Tech · Lithuania",
+    title: "Circle Link",
+    desc: "Directory of EV charging stations with live pricing data.",
+    url: "https://circlelink.app",
+  },
+  {
+    size: "wide",
+    bg: "linear-gradient(140deg,#831843,#4c1d95,#1e3a5f)",
+    cat: "Retail / E-Commerce · Japan",
+    title: "Wonder4U",
+    desc: "E-commerce presence for a Japanese retail brand.",
+    url: "https://wonder4u.jp",
+  },
+  {
+    size: "norm",
+    bg: "linear-gradient(140deg,#3f1d38,#1e3a8a)",
+    cat: "E-Commerce · USA",
+    title: "Safety First Door",
+    desc: "Online store for residential and commercial security doors.",
+    url: "https://safetyfirstdoor.com",
+  },
+  {
+    size: "half",
+    bg: "linear-gradient(140deg,#0c4a6e,#701a75)",
+    cat: "Interior Design · USA",
+    title: "Closets Designer",
+    desc: "Design and quoting site for a custom closet studio.",
+    url: "https://closetsdesigner.com",
+  },
+  {
+    size: "half",
+    bg: "linear-gradient(140deg,#052e16,#7c2d12)",
+    cat: "Seasonal Services · USA",
+    title: "Denver Christmas Light Installers",
+    desc: "Seasonal booking site for a holiday lighting installation service.",
+    url: "https://denverchristmaslightinstallers.com",
+  },
+];
+
+const team = [
+  {
+    initials: "IN",
+    name: "Idrees Nazir",
+    role: "Founder & Lead Developer",
+    bio: "Leads architecture and client delivery across every project — full-stack development, WordPress and cloud infrastructure.",
+  },
+  {
+    initials: "FH",
+    name: "Fakir Habib",
+    role: "Senior WordPress Developer",
+    bio: "Builds premium Elementor sites, custom themes and WooCommerce stores tuned for speed and conversions.",
+  },
+  {
+    initials: "SM",
+    name: "Saad Mehboob",
+    role: "Frontend Developer",
+    bio: "Crafts responsive, animated interfaces in React and Next.js — focused on performance and pixel-level polish.",
+  },
+  {
+    initials: "SA",
+    name: "Sohail Ahmed",
+    role: "Backend & DevOps Engineer",
+    bio: "Owns APIs, databases and AWS infrastructure — keeps deployments fast, secure and always online.",
   },
 ];
 
@@ -269,12 +386,7 @@ export default function Home() {
       <ScrollEffects />
 
       {/* ===== NAV ===== */}
-      <motion.nav
-        id="nav"
-        initial={{ opacity: 0, y: -24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <nav id="nav">
         <a className="brand" href="#home" data-cur="big">
           <span className="m">
             <svg width="38" height="42" viewBox="0 0 38 42">
@@ -317,13 +429,14 @@ export default function Home() {
           <a href="#tech">Stack</a>
           <a href="#process">Process</a>
           <a href="#work">Work</a>
+          <a href="#team">Team</a>
           <a href="#contact">Contact</a>
         </div>
         <a className="mag" href="#contact" data-cur="big">
           Start a Project
         </a>
         <button className="hamb">☰</button>
-      </motion.nav>
+      </nav>
 
       {/* ===== HERO ===== */}
       <header className="hero" id="home">
@@ -512,15 +625,44 @@ export default function Home() {
           <br />
           speak for us.
         </h2>
-        <div className="pf-grid">
-          {portfolio.map((p) => (
-            <div className={`pf ${p.size} rv`} data-cur="big" key={p.title}>
-              <div className="bgv" style={{ background: p.bg }} />
-              <span className="arrow">→</span>
-              <div className="meta">
-                <span className="cat">{p.cat}</span>
-                <h4>{p.title}</h4>
+        <PortfolioGrid projects={portfolio} />
+        <div className="pf-more rv">
+          <p>150+ WordPress projects delivered — this is a curated sample.</p>
+          <a
+            className="mag"
+            href="https://www.fiverr.com/s/YRbxv3l"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cur="big"
+          >
+            See Verified Reviews on Fiverr ↗
+          </a>
+        </div>
+      </section>
+
+      {/* ===== TEAM ===== */}
+      <section id="team">
+        <div className="sec-label">
+          <span className="idx">(05)</span> The Team <span className="ln" />
+        </div>
+        <h2 className="big rv">
+          Four people.
+          <br />
+          Zero handoffs.
+        </h2>
+        <p className="lead rv">
+          No account managers, no outsourcing chain — the people who plan
+          your project are the people who build it.
+        </p>
+        <div className="team-grid">
+          {team.map((m) => (
+            <div className="team-card glass rv" key={m.name}>
+              <div className="team-avatar">
+                <span className="fill-grad">{m.initials}</span>
               </div>
+              <h3>{m.name}</h3>
+              <span className="role">{m.role}</span>
+              <p>{m.bio}</p>
             </div>
           ))}
         </div>
@@ -529,7 +671,7 @@ export default function Home() {
       {/* ===== TESTIMONIALS ===== */}
       <section id="testimonials">
         <div className="sec-label">
-          <span className="idx">(05)</span> Client Voices{" "}
+          <span className="idx">(06)</span> Client Voices{" "}
           <span className="ln" />
         </div>
         <h2 className="big rv">
@@ -556,23 +698,17 @@ export default function Home() {
 
       {/* ===== CTA / CONTACT ===== */}
       <div className="cta" id="contact">
-        <motion.div
-          className="cta-in"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="cta-in">
           <div className="aura" />
-          <div className="sec-label" style={{ justifyContent: "center" }}>
+          <div className="sec-label rv" style={{ justifyContent: "center" }}>
             <span className="ln" /> Let&apos;s build <span className="ln" />
           </div>
-          <h2>
+          <h2 className="rv">
             Got a project
             <br />
             worth building?
           </h2>
-          <p>
+          <p className="rv">
             Free consultation. Transparent quotes. On-time delivery,
             guaranteed.
           </p>
@@ -580,13 +716,7 @@ export default function Home() {
           <div className="cta-grid">
             <ContactForm />
 
-            <motion.div
-              className="cta-info"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <div className="cta-info rv">
               <div className="cta-info-item">
                 <span className="lbl">Email</span>
                 <a href="mailto:info@sysinteractive.com">
@@ -605,9 +735,9 @@ export default function Home() {
                 <span className="lbl">Response Time</span>
                 <span className="val">Within 24 hours</span>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* ===== FOOTER ===== */}

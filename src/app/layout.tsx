@@ -36,7 +36,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${syne.variable} ${jetBrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
