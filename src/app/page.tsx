@@ -1,7 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
 import ThreeScene from "@/components/ThreeScene";
 import CustomCursor from "@/components/CustomCursor";
 import TiltCards from "@/components/TiltCards";
 import ScrollEffects from "@/components/ScrollEffects";
+import ContactForm from "@/components/ContactForm";
 
 const heroMarquee = [
   "React",
@@ -265,7 +269,12 @@ export default function Home() {
       <ScrollEffects />
 
       {/* ===== NAV ===== */}
-      <nav id="nav">
+      <motion.nav
+        id="nav"
+        initial={{ opacity: 0, y: -24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
         <a className="brand" href="#home" data-cur="big">
           <span className="m">
             <svg width="38" height="42" viewBox="0 0 38 42">
@@ -314,7 +323,7 @@ export default function Home() {
           Start a Project
         </a>
         <button className="hamb">☰</button>
-      </nav>
+      </motion.nav>
 
       {/* ===== HERO ===== */}
       <header className="hero" id="home">
@@ -545,9 +554,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CTA ===== */}
+      {/* ===== CTA / CONTACT ===== */}
       <div className="cta" id="contact">
-        <div className="cta-in">
+        <motion.div
+          className="cta-in"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="aura" />
           <div className="sec-label" style={{ justifyContent: "center" }}>
             <span className="ln" /> Let&apos;s build <span className="ln" />
@@ -561,14 +576,38 @@ export default function Home() {
             Free consultation. Transparent quotes. On-time delivery,
             guaranteed.
           </p>
-          <a
-            className="mag lg"
-            href="mailto:info@sysinteractive.com"
-            data-cur="big"
-          >
-            Start a Project →
-          </a>
-        </div>
+
+          <div className="cta-grid">
+            <ContactForm />
+
+            <motion.div
+              className="cta-info"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="cta-info-item">
+                <span className="lbl">Email</span>
+                <a href="mailto:info@sysinteractive.com">
+                  info@sysinteractive.com
+                </a>
+              </div>
+              <div className="cta-info-item">
+                <span className="lbl">Phone</span>
+                <a href="tel:+923001234567">+92 300 1234567</a>
+              </div>
+              <div className="cta-info-item">
+                <span className="lbl">Location</span>
+                <span className="val">Lahore, Pakistan</span>
+              </div>
+              <div className="cta-info-item">
+                <span className="lbl">Response Time</span>
+                <span className="val">Within 24 hours</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
 
       {/* ===== FOOTER ===== */}
