@@ -1,12 +1,15 @@
 import Link from "next/link";
 import TechSlider from "@/components/ui/TechSlider";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import TypeWriter from "@/components/ui/TypeWriter";
 
 export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
       <section className="hero">
+        <div className="blob blob-1" />
+        <div className="blob blob-2" />
         <div className="wrap hero-grid">
           <div className="reveal">
             <span className="badge">
@@ -14,7 +17,7 @@ export default function Home() {
               Trusted IT partner since 2005
             </span>
             <h1>
-              Modern IT solutions that keep your business <span>running.</span>
+              Modern IT solutions that keep your business{" "}<TypeWriter />
             </h1>
             <p className="lead">
               SysInteractive delivers IT management, cybersecurity, cloud,
@@ -49,66 +52,13 @@ export default function Home() {
           </div>
 
           <div className="hero-vis reveal">
-            <div className="panel">
-              <div className="panel-top">
-                <div className="pt-l">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1D6FE0" strokeWidth="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M9 9h6v6H9z" />
-                  </svg>
-                  Systems overview
-                </div>
-                <span className="live">
-                  <span className="d" />
-                  All systems online
-                </span>
-              </div>
-              <div className="metrics">
-                <div className="metric">
-                  <div className="mv">
-                    99.9%<small>▲</small>
-                  </div>
-                  <div className="ml">Network uptime</div>
-                </div>
-                <div className="metric">
-                  <div className="mv">1.2k</div>
-                  <div className="ml">Devices monitored</div>
-                </div>
-                <div className="metric">
-                  <div className="mv">0</div>
-                  <div className="ml">Open threats</div>
-                </div>
-                <div className="metric">
-                  <div className="mv">4m</div>
-                  <div className="ml">Avg. response</div>
-                </div>
-              </div>
-              <div className="chart">
-                <div className="cl">
-                  <span>Performance</span>
-                  <span>Last 24h</span>
-                </div>
-                <svg viewBox="0 0 300 70" preserveAspectRatio="none" style={{ width: "100%", height: 60 }}>
-                  <defs>
-                    <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stopColor="#1D6FE0" stopOpacity=".25" />
-                      <stop offset="1" stopColor="#1D6FE0" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M0 50 L30 44 L60 48 L90 32 L120 38 L150 22 L180 30 L210 16 L240 24 L270 12 L300 18 L300 70 L0 70 Z"
-                    fill="url(#ga)"
-                  />
-                  <path
-                    d="M0 50 L30 44 L60 48 L90 32 L120 38 L150 22 L180 30 L210 16 L240 24 L270 12 L300 18"
-                    fill="none"
-                    stroke="#1D6FE0"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+            <div className="hero-img-wrap">
+              <img
+                src="/images/hero/hero-dashboard.jpg"
+                alt="Analytics dashboard showing real-time business metrics"
+                className="hero-img"
+              />
+              <div className="hero-img-overlay" />
             </div>
             <div className="chip-float">
               <span className="ci">
@@ -177,21 +127,14 @@ export default function Home() {
       <section className="block">
         <div className="wrap about-grid">
           <div className="about-vis reveal">
+            <img
+              src="/images/about/office-team.jpg"
+              alt="SysInteractive team collaborating in modern office"
+              className="about-photo"
+            />
             <div className="about-badge">
               <b>20 yrs</b>
               <small>Delivering IT since 2005</small>
-            </div>
-            <div className="quote">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 21c3-2 4-5 4-8V5H3v8H1zm10 0c3-2 4-5 4-8V5h-4v8h-2z" />
-              </svg>
-              <p>
-                We treat your infrastructure like our own — proactive,
-                secure, and always accountable for the outcome.
-              </p>
-              <div className="by">
-                <b>SysInteractive</b> — Managed IT &amp; Engineering
-              </div>
             </div>
           </div>
           <div className="reveal">
@@ -242,7 +185,7 @@ export default function Home() {
         <div className="wrap">
           <div className="sec-head center reveal">
             <span className="eyebrow c">Our services</span>
-            <h2>Solutions &amp; focus areas</h2>
+            <h2>Solutions &amp; <span className="grad-text">focus areas</span></h2>
             <p>
               A full spectrum of IT services under one roof, so you have a
               single, accountable partner for every layer of your technology.
@@ -630,12 +573,9 @@ export default function Home() {
           </div>
           <div className="case-grid">
             <article className="case reveal">
-              <div className="thumb g1">
+              <div className="thumb-img">
                 <span className="cat">IT Management</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
-                </svg>
+                <img src="/images/portfolio/project-workflow.jpg" alt="Workflow management platform" />
               </div>
               <div className="cbody">
                 <h3>Workflow management platform</h3>
@@ -644,7 +584,7 @@ export default function Home() {
                   monitored platform, cutting resolution time by more than
                   half.
                 </p>
-                <Link href="/contact" className="more">
+                <Link href="/portfolio" className="more">
                   View details
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -653,11 +593,9 @@ export default function Home() {
               </div>
             </article>
             <article className="case reveal">
-              <div className="thumb g2">
+              <div className="thumb-img">
                 <span className="cat">Cloud Computing</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-                </svg>
+                <img src="/images/portfolio/project-cloud.jpg" alt="Cloud migration infrastructure" />
               </div>
               <div className="cbody">
                 <h3>Cloud migration for finance</h3>
@@ -665,7 +603,7 @@ export default function Home() {
                   Moved a financial services firm off aging servers to a
                   secure cloud setup, reducing infrastructure costs by 34%.
                 </p>
-                <Link href="/contact" className="more">
+                <Link href="/portfolio" className="more">
                   View details
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -674,12 +612,9 @@ export default function Home() {
               </div>
             </article>
             <article className="case reveal">
-              <div className="thumb g3">
+              <div className="thumb-img">
                 <span className="cat">Software Development</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="16 18 22 12 16 6" />
-                  <polyline points="8 6 2 12 8 18" />
-                </svg>
+                <img src="/images/portfolio/project-code.jpg" alt="Custom software development" />
               </div>
               <div className="cbody">
                 <h3>Custom software for logistics</h3>
@@ -688,7 +623,7 @@ export default function Home() {
                   replaced 40 spreadsheets and scaled to thousands of daily
                   jobs.
                 </p>
-                <Link href="/contact" className="more">
+                <Link href="/portfolio" className="more">
                   View details
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M5 12h14M13 6l6 6-6 6" />

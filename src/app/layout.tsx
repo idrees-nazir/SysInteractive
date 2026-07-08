@@ -4,6 +4,7 @@ import Topbar from "@/components/layout/Topbar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <ScrollProgress />
         <RevealOnScroll />
       </body>
     </html>

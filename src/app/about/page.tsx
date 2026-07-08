@@ -30,21 +30,14 @@ export default function AboutPage() {
       <section className="block">
         <div className="wrap about-grid">
           <div className="about-vis reveal">
+            <img
+              src="/images/about/office-team.jpg"
+              alt="SysInteractive team collaborating in modern office"
+              className="about-photo"
+            />
             <div className="about-badge">
               <b>20 yrs</b>
               <small>Delivering IT since 2005</small>
-            </div>
-            <div className="quote">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 21c3-2 4-5 4-8V5H3v8H1zm10 0c3-2 4-5 4-8V5h-4v8h-2z" />
-              </svg>
-              <p>
-                We treat your infrastructure like our own — proactive,
-                secure, and always accountable for the outcome.
-              </p>
-              <div className="by">
-                <b>SysInteractive</b> — Managed IT &amp; Engineering
-              </div>
             </div>
           </div>
           <div className="reveal">
@@ -192,13 +185,15 @@ export default function AboutPage() {
           </div>
           <div className="team-grid">
             {[
-              { ph: "p1", initials: "AR", name: "Alex Rivera", role: "Founder & CEO" },
-              { ph: "p2", initials: "JC", name: "Jordan Chen", role: "Head of Engineering" },
-              { ph: "p3", initials: "SP", name: "Sam Patel", role: "Security Lead" },
-              { ph: "p4", initials: "MO", name: "Maria Okafor", role: "Marketing Director" },
+              { photo: "/images/team/team1.jpg", name: "Alex Rivera", role: "Founder & CEO" },
+              { photo: "/images/team/team2.jpg", name: "Jordan Chen", role: "Head of Engineering" },
+              { photo: "/images/team/team3.jpg", name: "Sam Patel", role: "Security Lead" },
+              { photo: "/images/team/team4.jpg", name: "Maria Okafor", role: "Marketing Director" },
             ].map((m) => (
               <div className="tm reveal" key={m.name}>
-                <div className={`ph ${m.ph}`}>{m.initials}</div>
+                <div className="ph">
+                  <img src={m.photo} alt={m.name} />
+                </div>
                 <div className="tb">
                   <h4>{m.name}</h4>
                   <small>{m.role}</small>

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 const projects = [
   {
     gradient: "g1",
+    photo: "/images/portfolio/project-workflow.jpg",
     category: "IT Management",
     title: "Workflow management platform",
     client: "NorthStar Manufacturing",
@@ -24,121 +25,76 @@ const projects = [
     ),
   },
   {
-    gradient: "g2",
+    photo: "/images/portfolio/project-cloud.jpg",
     category: "Cloud Computing",
     title: "Cloud migration for finance",
     client: "Meridian Financial Services",
     desc: "Moved a financial services firm off aging on-premise servers to a fully managed cloud setup on AWS. Zero downtime during migration, with automated backups, disaster recovery, and compliance-ready infrastructure.",
     results: ["34% cost reduction", "Zero downtime", "SOC 2 compliant"],
     tech: ["AWS", "Terraform", "Docker", "Kubernetes", "CloudWatch"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
-      </svg>
-    ),
   },
   {
-    gradient: "g3",
+    photo: "/images/portfolio/project-code.jpg",
     category: "Software Development",
     title: "Custom software for logistics",
     client: "Meridian Logistics",
     desc: "Built a real-time dispatch and tracking system that replaced 40 spreadsheets and scaled to thousands of daily jobs. Drivers use a mobile app for route optimization and digital proof-of-delivery.",
     results: ["3,000+ daily jobs", "40 spreadsheets replaced", "28% fuel savings"],
     tech: ["React Native", "Node.js", "MongoDB", "Redis", "Google Maps API"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
   },
   {
-    gradient: "g4",
+    photo: "/images/portfolio/project-ecom.jpg",
     category: "Web Development",
     title: "E-commerce rebuild for retail",
     client: "Northgate Retail Group",
     desc: "Rebuilt a slow, outdated storefront on a modern headless commerce stack. Implemented server-side rendering, optimized images, and progressive loading that doubled page speed and lifted online sales significantly.",
     results: ["47% sales increase", "2× page speed", "32% lower bounce rate"],
     tech: ["Next.js", "Shopify API", "Tailwind CSS", "Vercel", "Stripe"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M2 8h20M6 5.5h.01M9 5.5h.01" />
-      </svg>
-    ),
   },
   {
-    gradient: "g5",
+    photo: "/images/portfolio/project-mobile.jpg",
     category: "Mobile App",
     title: "Field-service mobile app",
     client: "ProTech Services Inc.",
     desc: "A cross-platform app that put job details, routing, and sign-off in the hands of 200+ field technicians. Offline-first architecture ensures reliability in areas with poor connectivity, with automatic sync when back online.",
     results: ["200+ technicians", "Offline-first", "4.7★ App Store rating"],
     tech: ["Flutter", "Firebase", "Node.js", "PostgreSQL", "Push Notifications"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
-        <rect x="7" y="2" width="10" height="20" rx="2.5" />
-        <path d="M11 18h2" />
-      </svg>
-    ),
   },
   {
-    gradient: "g6",
+    photo: "/images/portfolio/project-seo.jpg",
     category: "Digital Marketing",
     title: "SEO & content growth",
     client: "HCM Group",
     desc: "A twelve-month SEO and content program that grew a B2B client's organic traffic by 180%. Included technical SEO audit, content strategy, link building, and ongoing performance reporting with monthly optimization.",
     results: ["+180% organic traffic", "Top 3 rankings", "3.2× ROAS"],
     tech: ["Google Analytics", "SEMrush", "WordPress", "Schema Markup", "GTM"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="11" cy="11" r="7" />
-        <path d="m21 21-4.3-4.3M8 11h6M11 8v6" />
-      </svg>
-    ),
   },
   {
-    gradient: "g1",
+    photo: "/images/portfolio/project-security.jpg",
     category: "Cyber Security",
     title: "Enterprise security overhaul",
     client: "Pacific Healthcare Network",
     desc: "Conducted a full security audit and remediation for a 500-seat healthcare organization. Implemented zero-trust architecture, endpoint detection, and employee security training program achieving HIPAA compliance.",
     results: ["HIPAA compliant", "500+ endpoints secured", "92% threat reduction"],
     tech: ["CrowdStrike", "Okta", "Splunk", "Azure AD", "Fortinet"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
   },
   {
-    gradient: "g4",
+    photo: "/images/portfolio/project-analytics.jpg",
     category: "Web Application",
     title: "SaaS analytics dashboard",
     client: "DataPulse Technologies",
     desc: "Designed and built a multi-tenant analytics platform processing millions of events daily. Real-time dashboards, custom report builder, and role-based access control for enterprise clients across three continents.",
     results: ["5M+ events/day", "Multi-tenant SaaS", "3 continents served"],
     tech: ["React", "Python", "Django", "PostgreSQL", "Redis", "AWS"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M3 3v18h18" />
-        <path d="M7 15v-4M12 15V8M17 15v-6" />
-      </svg>
-    ),
   },
   {
-    gradient: "g5",
+    photo: "/images/portfolio/project-devops.jpg",
     category: "DevOps",
     title: "CI/CD pipeline automation",
     client: "FinEdge Solutions",
     desc: "Architected a complete CI/CD pipeline replacing manual deployments with automated testing, staging, and zero-downtime releases. Reduced deployment time from 4 hours to 12 minutes with full rollback capability.",
     results: ["12-min deploys", "Zero downtime", "95% fewer incidents"],
     tech: ["GitHub Actions", "Docker", "Kubernetes", "Terraform", "ArgoCD"],
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" />
-      </svg>
-    ),
   },
 ];
 
@@ -173,9 +129,9 @@ export default function PortfolioPage() {
           <div className="portfolio-grid">
             {projects.map((p) => (
               <article className="pf-card reveal" key={p.title}>
-                <div className={`pf-thumb ${p.gradient}`}>
+                <div className="pf-thumb">
                   <span className="cat">{p.category}</span>
-                  {p.icon}
+                  <img src={p.photo} alt={p.title} />
                 </div>
                 <div className="pf-body">
                   <small className="pf-client">{p.client}</small>
