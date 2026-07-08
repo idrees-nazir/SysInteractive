@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Syne, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import Topbar from "@/components/layout/Topbar";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "SYSINTERACTIVE — Digital Engineering Studio",
+  title: "SysInteractive — IT Solutions & Services",
   description:
-    "Sysinteractive is a full-stack IT studio building high-performance websites, cloud infrastructure and premium WordPress for brands that refuse to blend in.",
+    "SysInteractive delivers IT management, cybersecurity, cloud, custom software development, and digital marketing — backed by certified engineers and round-the-clock support since 2005.",
 };
 
 export default function RootLayout({
@@ -32,11 +30,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${syne.variable} ${jetBrainsMono.variable}`}
-    >
-      <body suppressHydrationWarning>{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body id="top">
+        <Topbar />
+        <Navbar />
+        {children}
+        <Footer />
+        <RevealOnScroll />
+      </body>
     </html>
   );
 }

@@ -1,790 +1,804 @@
-import ThreeScene from "@/components/ThreeScene";
-import CustomCursor from "@/components/CustomCursor";
-import TiltCards from "@/components/TiltCards";
-import ScrollEffects from "@/components/ScrollEffects";
-import ContactForm from "@/components/ContactForm";
-import PortfolioGrid from "@/components/PortfolioGrid";
-
-const heroMarquee = [
-  "React",
-  "Next.js",
-  "Node.js",
-  "Python",
-  "Laravel",
-  "AWS",
-  "Docker",
-  "Kubernetes",
-  "WordPress",
-  "Elementor",
-  "PostgreSQL",
-  "GraphQL",
-];
-
-const services = [
-  {
-    no: "/ 01",
-    title: "Frontend Development",
-    desc: "Animated, responsive interfaces in React, Next.js and Vue — sub-second loads, silky motion, flawless on every screen.",
-    tags: ["React", "Next.js", "Vue", "WebGL"],
-    icon: (
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.7"
-      >
-        <path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 6l-2 12" />
-      </svg>
-    ),
-  },
-  {
-    no: "/ 02",
-    title: "Backend Development",
-    desc: "Secure, scalable APIs and business logic in Node, Python and Laravel — engineered for real-world traffic.",
-    tags: ["Node", "Python", "Laravel"],
-    icon: (
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.7"
-      >
-        <rect x="3" y="4" width="18" height="6" rx="1.5" />
-        <rect x="3" y="14" width="18" height="6" rx="1.5" />
-        <circle cx="7" cy="7" r=".9" fill="#8B78FF" />
-        <circle cx="7" cy="17" r=".9" fill="#8B78FF" />
-      </svg>
-    ),
-  },
-  {
-    no: "/ 03",
-    title: "Full-Stack Apps",
-    desc: "SaaS platforms, dashboards and portals — complete products from database schema to the last interaction.",
-    tags: ["SaaS", "Dashboards", "APIs"],
-    icon: (
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.7"
-      >
-        <path d="M12 2l9 5v10l-9 5-9-5V7Z" />
-        <path d="M12 2v20M3 7l18 10M21 7L3 17" opacity=".5" />
-      </svg>
-    ),
-  },
-  {
-    no: "/ 04",
-    title: "AWS Cloud & DevOps",
-    desc: "EC2, S3, RDS, CI/CD pipelines and auto-scaling — infrastructure that grows with you and never wakes you at 3am.",
-    tags: ["EC2", "S3", "Docker"],
-    icon: (
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.7"
-      >
-        <path d="M18 10a4 4 0 0 0-7.9-1A4.5 4.5 0 0 0 6 17.5h12a3.5 3.5 0 0 0 0-7Z" />
-      </svg>
-    ),
-  },
-  {
-    no: "/ 05",
-    title: "Server Management",
-    desc: "Hardened Linux servers, proactive monitoring, automated backups and round-the-clock uptime care.",
-    tags: ["Linux", "Nginx", "24/7"],
-    icon: (
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="url(#lg)"
-        strokeWidth="1.7"
-      >
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <path d="M7 9h4M7 13h7M7 17h5" />
-      </svg>
-    ),
-  },
-  {
-    no: "/ 06",
-    title: "WordPress & Elementor",
-    desc: "Premium Elementor builds, custom themes and WooCommerce stores — optimized to 90+ PageSpeed.",
-    tags: ["Elementor", "WooCommerce"],
-    icon: (
-      <span
-        style={{
-          fontFamily: "var(--font-syne)",
-          fontWeight: 800,
-          fontSize: "17px",
-          background: "var(--grad)",
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          color: "transparent",
-        }}
-      >
-        W·E
-      </span>
-    ),
-  },
-];
-
-const techStack = [
-  { d: "5", bg: "#E44D26", label: "HTML5" },
-  { d: "3", bg: "#1572B6", label: "CSS3" },
-  { d: "JS", bg: "#F7DF1E", color: "#111", label: "JavaScript" },
-  { d: "TS", bg: "#3178C6", label: "TypeScript" },
-  { d: "⚛", bg: "#0e7490", label: "React" },
-  { d: "N", bg: "#111", border: "1px solid #444", label: "Next.js" },
-  { d: "V", bg: "#41B883", label: "Vue.js" },
-  { d: "⬢", bg: "#3C873A", label: "Node.js" },
-  { d: "php", bg: "#777BB3", label: "PHP" },
-  { d: "L", bg: "#FF2D20", label: "Laravel" },
-  { d: "Py", bg: "#3776AB", label: "Python" },
-  { d: "a", bg: "#FF9900", color: "#111", label: "AWS" },
-  { d: "D", bg: "#2496ED", label: "Docker" },
-  { d: "W", bg: "#21759B", label: "WordPress" },
-  { d: "E", bg: "#92003B", label: "Elementor" },
-];
-
-const processSteps = [
-  {
-    n: "01",
-    title: "Discover",
-    desc: "We dig into your goals, users and constraints before a single line is written.",
-  },
-  {
-    n: "02",
-    title: "Plan & Architect",
-    desc: "Tech stack decisions, wireframes and a clear roadmap you approve before we build.",
-  },
-  {
-    n: "03",
-    title: "Design",
-    desc: "Intuitive, distinctive UI/UX that connects with your users and reflects your brand.",
-  },
-  {
-    n: "04",
-    title: "Develop",
-    desc: "Agile sprints with weekly demos, transparent progress and code reviewed at every step.",
-  },
-  {
-    n: "05",
-    title: "Deploy",
-    desc: "Zero-downtime launch on AWS with monitoring, backups and performance tuning.",
-  },
-  {
-    n: "06",
-    title: "Support",
-    desc: "Ongoing optimization, updates and 24/7 support so you can focus on growth.",
-  },
-];
-
-const portfolio = [
-  {
-    size: "wide",
-    bg: "linear-gradient(140deg,#1e1b4b,#4c1d95,#831843)",
-    cat: "Home & Building Lifts · Switzerland",
-    title: "Kabinenlift.ch",
-    desc: "Panoramic home elevator systems for residential and commercial buildings.",
-    url: "https://kabinenlift.ch",
-  },
-  {
-    size: "norm",
-    bg: "linear-gradient(140deg,#172554,#0e7490)",
-    cat: "Home Services · Switzerland",
-    title: "Treppenliftvergleich.ch",
-    desc: "Helps homeowners compare stairlift models and find the right fit.",
-    url: "https://treppenliftvergleich.ch",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#4a044e,#1e40af)",
-    cat: "Professional Services · Sweden",
-    title: "Officiell-Oversattning.se",
-    desc: "Official document translation by authorized, certified translators.",
-    url: "https://officiell-oversattning.se",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#312e81,#be185d)",
-    cat: "Fitness · USA",
-    title: "CrossFit 60100",
-    desc: "Class schedules, membership and coaching site for a CrossFit box.",
-    url: "https://crossfit60100.com",
-  },
-  {
-    size: "norm",
-    bg: "linear-gradient(140deg,#0c4a6e,#5b21b6)",
-    cat: "Creative Studio · Australia",
-    title: "Studio Sarai",
-    desc: "Handmade wood mosaic artwork studio based in Western Australia.",
-    url: "https://studiosarai.com.au",
-  },
-  {
-    size: "wide",
-    bg: "linear-gradient(140deg,#3b0764,#1d4ed8,#0e7490)",
-    cat: "Healthcare · Switzerland",
-    title: "Rheinskin",
-    desc: "Patient-facing site for a dermatology practice in Basel.",
-    url: "https://rheinskin.ch",
-  },
-  {
-    size: "wide",
-    bg: "linear-gradient(140deg,#4c1d95,#0369a1,#166534)",
-    cat: "Personal Brand · USA",
-    title: "Build Wealth With Douglas",
-    desc: "Personal brand site for an author, speaker and financial coach.",
-    url: "https://buildwealthwithdouglas.com",
-  },
-  {
-    size: "norm",
-    bg: "linear-gradient(140deg,#1e3a5f,#7c2d92)",
-    cat: "Telecom · Switzerland",
-    title: "Connectics.ch",
-    desc: "B2B site for a telecommunications solutions provider.",
-    url: "https://connectics.ch",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#78350f,#831843)",
-    cat: "Logistics · USA",
-    title: "Swamp Rabbit Moving & Storage",
-    desc: "Booking and service site for a local moving & storage company.",
-    url: "https://swamprabbitmoving.com",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#164e63,#4c1d95)",
-    cat: "Education · USA",
-    title: "Thrive Healthcare Academy",
-    desc: "CNA training program enrollment and course information site.",
-    url: "https://thrivehca.com",
-  },
-  {
-    size: "norm",
-    bg: "linear-gradient(140deg,#365314,#155e75)",
-    cat: "Home Services · USA",
-    title: "A Plus Appliances",
-    desc: "Service booking site for a local appliance repair company.",
-    url: "https://aplusappliancesca.com",
-  },
-  {
-    size: "wide",
-    bg: "linear-gradient(140deg,#1e1b4b,#0e7490,#166534)",
-    cat: "EV / Tech · Lithuania",
-    title: "Circle Link",
-    desc: "Directory of EV charging stations with live pricing data.",
-    url: "https://circlelink.app",
-  },
-  {
-    size: "wide",
-    bg: "linear-gradient(140deg,#831843,#4c1d95,#1e3a5f)",
-    cat: "Retail / E-Commerce · Japan",
-    title: "Wonder4U",
-    desc: "E-commerce presence for a Japanese retail brand.",
-    url: "https://wonder4u.jp",
-  },
-  {
-    size: "norm",
-    bg: "linear-gradient(140deg,#3f1d38,#1e3a8a)",
-    cat: "E-Commerce · USA",
-    title: "Safety First Door",
-    desc: "Online store for residential and commercial security doors.",
-    url: "https://safetyfirstdoor.com",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#0c4a6e,#701a75)",
-    cat: "Interior Design · USA",
-    title: "Closets Designer",
-    desc: "Design and quoting site for a custom closet studio.",
-    url: "https://closetsdesigner.com",
-  },
-  {
-    size: "half",
-    bg: "linear-gradient(140deg,#052e16,#7c2d12)",
-    cat: "Seasonal Services · USA",
-    title: "Denver Christmas Light Installers",
-    desc: "Seasonal booking site for a holiday lighting installation service.",
-    url: "https://denverchristmaslightinstallers.com",
-  },
-];
-
-const team = [
-  {
-    initials: "IN",
-    name: "Idrees Nazir",
-    role: "Founder & Lead Developer",
-    bio: "Leads architecture and client delivery across every project — full-stack development, WordPress and cloud infrastructure.",
-  },
-  {
-    initials: "FH",
-    name: "Fakir Habib",
-    role: "Senior WordPress Developer",
-    bio: "Builds premium Elementor sites, custom themes and WooCommerce stores tuned for speed and conversions.",
-  },
-  {
-    initials: "SM",
-    name: "Saad Mehboob",
-    role: "Frontend Developer",
-    bio: "Crafts responsive, animated interfaces in React and Next.js — focused on performance and pixel-level polish.",
-  },
-  {
-    initials: "SA",
-    name: "Sohail Ahmed",
-    role: "Backend & DevOps Engineer",
-    bio: "Owns APIs, databases and AWS infrastructure — keeps deployments fast, secure and always online.",
-  },
-];
-
-const testimonials = [
-  {
-    delay: "d1",
-    quote:
-      "Sysinteractive turned our idea into a polished, high-performance product. Professional, responsive and genuinely world-class engineering.",
-    initials: "JM",
-    name: "Jason Miller",
-    role: "CEO, TechNova",
-  },
-  {
-    delay: "d2",
-    quote:
-      "They delivered on time and blew past our expectations. Communication was flawless from kickoff to launch and beyond.",
-    initials: "SJ",
-    name: "Sarah Johnson",
-    role: "Founder, ShopEase",
-  },
-  {
-    delay: "d3",
-    quote:
-      "After their AWS work our load times dropped 70% and conversions doubled. This is a premium team, no question.",
-    initials: "DB",
-    name: "David Brown",
-    role: "CTO, InnovateX",
-  },
-];
+import Link from "next/link";
+import TechSlider from "@/components/ui/TechSlider";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function Home() {
   return (
     <>
-      <ThreeScene />
-      <div className="grain" />
-      <div className="vig" />
-      <CustomCursor />
-      <TiltCards />
-      <ScrollEffects />
-
-      {/* ===== NAV ===== */}
-      <nav id="nav">
-        <a className="brand" href="#home" data-cur="big">
-          <span className="m">
-            <svg width="38" height="42" viewBox="0 0 38 42">
-              <defs>
-                <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#4C7DFF" />
-                  <stop offset=".5" stopColor="#8B78FF" />
-                  <stop offset="1" stopColor="#F062C0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M19 1 36 11v20L19 41 2 31V11Z"
-                fill="none"
-                stroke="url(#lg)"
-                strokeWidth="2.4"
-              />
-              <text
-                x="19"
-                y="27"
-                textAnchor="middle"
-                fontFamily="Syne"
-                fontWeight="800"
-                fontSize="16"
-                fill="url(#lg)"
-              >
-                S
-              </text>
-            </svg>
-          </span>
-          <span>
-            SYSINTERACTIVE
-            <small>DIGITAL ENGINEERING</small>
-          </span>
-        </a>
-        <div className="nlinks">
-          <a href="#home" className="on">
-            Home
-          </a>
-          <a href="#services">Services</a>
-          <a href="#tech">Stack</a>
-          <a href="#process">Process</a>
-          <a href="#work">Work</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <a className="mag" href="#contact" data-cur="big">
-          Start a Project
-        </a>
-        <button className="hamb">☰</button>
-      </nav>
-
       {/* ===== HERO ===== */}
-      <header className="hero" id="home">
-        <div className="hero-tag">
-          <span className="ln" />
-          FRONTEND · BACKEND · CLOUD · WORDPRESS
-        </div>
-        <h1 className="mega" id="mega">
-          <span className="l">
-            <span>WE ENGINEER</span>
-          </span>
-          <span className="l">
-            <span className="stroke-txt">DIGITAL</span>
-          </span>
-          <span className="l">
-            <span className="fill-grad">EXPERIENCES.</span>
-          </span>
-        </h1>
-        <div className="hero-foot">
-          <p>
-            Sysinteractive is a full-stack IT studio building high-performance
-            websites, cloud infrastructure and premium WordPress for brands
-            that refuse to blend in.
-          </p>
-          <div className="scroll-hint">
-            <span className="mouse" />
-            SCROLL TO EXPLORE
+      <section className="hero">
+        <div className="wrap hero-grid">
+          <div className="reveal">
+            <span className="badge">
+              <span className="pip" />
+              Trusted IT partner since 2005
+            </span>
+            <h1>
+              Modern IT solutions that keep your business <span>running.</span>
+            </h1>
+            <p className="lead">
+              SysInteractive delivers IT management, cybersecurity, cloud,
+              custom software, and digital marketing — backed by certified
+              engineers and round-the-clock support.
+            </p>
+            <div className="hero-cta">
+              <Link href="/contact" className="btn btn-primary">
+                Request a consultation
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+              <Link href="/services" className="btn btn-ghost">
+                Explore services
+              </Link>
+            </div>
+            <div className="hero-trust">
+              <div className="tt">
+                <b>130+</b>
+                <small>Certified engineers</small>
+              </div>
+              <div className="tt">
+                <b>500+</b>
+                <small>Projects delivered</small>
+              </div>
+              <div className="tt">
+                <b>99.9%</b>
+                <small>Uptime guarantee</small>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="hero-marq">
-          <div className="t" id="hmarq">
-            {[...heroMarquee, ...heroMarquee].map((item, i) => (
-              <span key={i}>
-                <b>◆</b> {item}
+
+          <div className="hero-vis reveal">
+            <div className="panel">
+              <div className="panel-top">
+                <div className="pt-l">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#1D6FE0" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M9 9h6v6H9z" />
+                  </svg>
+                  Systems overview
+                </div>
+                <span className="live">
+                  <span className="d" />
+                  All systems online
+                </span>
+              </div>
+              <div className="metrics">
+                <div className="metric">
+                  <div className="mv">
+                    99.9%<small>▲</small>
+                  </div>
+                  <div className="ml">Network uptime</div>
+                </div>
+                <div className="metric">
+                  <div className="mv">1.2k</div>
+                  <div className="ml">Devices monitored</div>
+                </div>
+                <div className="metric">
+                  <div className="mv">0</div>
+                  <div className="ml">Open threats</div>
+                </div>
+                <div className="metric">
+                  <div className="mv">4m</div>
+                  <div className="ml">Avg. response</div>
+                </div>
+              </div>
+              <div className="chart">
+                <div className="cl">
+                  <span>Performance</span>
+                  <span>Last 24h</span>
+                </div>
+                <svg viewBox="0 0 300 70" preserveAspectRatio="none" style={{ width: "100%", height: 60 }}>
+                  <defs>
+                    <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stopColor="#1D6FE0" stopOpacity=".25" />
+                      <stop offset="1" stopColor="#1D6FE0" stopOpacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0 50 L30 44 L60 48 L90 32 L120 38 L150 22 L180 30 L210 16 L240 24 L270 12 L300 18 L300 70 L0 70 Z"
+                    fill="url(#ga)"
+                  />
+                  <path
+                    d="M0 50 L30 44 L60 48 L90 32 L120 38 L150 22 L180 30 L210 16 L240 24 L270 12 L300 18"
+                    fill="none"
+                    stroke="#1D6FE0"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div className="chip-float">
+              <span className="ci">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
               </span>
-            ))}
+              <div>
+                <b>SOC 2 secured</b>
+                <small>Enterprise-grade</small>
+              </div>
+            </div>
           </div>
         </div>
-      </header>
+      </section>
+
+      {/* ===== FEATURE STRIP ===== */}
+      <section className="pull-up">
+        <div className="wrap">
+          <div className="feat-grid">
+            <div className="feat reveal">
+              <div className="fi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m22 11-3-3m0 0-3 3m3-3v9" />
+                  <path d="M2 13l3 3m0 0 3-3m-3 3V7" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <h3>Certified IT expertise</h3>
+              <p>
+                A deep bench of certified engineers across networks, security,
+                and cloud — matched to your stack, not a script.
+              </p>
+            </div>
+            <div className="feat reveal">
+              <div className="fi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <h3>24/7 IT support</h3>
+              <p>
+                A monitored help desk that never sleeps. Issues are caught,
+                triaged, and resolved before they reach your team.
+              </p>
+            </div>
+            <div className="feat reveal">
+              <div className="fi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+                </svg>
+              </div>
+              <h3>Tailored solutions</h3>
+              <p>
+                Every engagement starts with your goals. We design and build
+                around how your business actually works.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== ABOUT ===== */}
+      <section className="block">
+        <div className="wrap about-grid">
+          <div className="about-vis reveal">
+            <div className="about-badge">
+              <b>20 yrs</b>
+              <small>Delivering IT since 2005</small>
+            </div>
+            <div className="quote">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 21c3-2 4-5 4-8V5H3v8H1zm10 0c3-2 4-5 4-8V5h-4v8h-2z" />
+              </svg>
+              <p>
+                We treat your infrastructure like our own — proactive,
+                secure, and always accountable for the outcome.
+              </p>
+              <div className="by">
+                <b>SysInteractive</b> — Managed IT &amp; Engineering
+              </div>
+            </div>
+          </div>
+          <div className="reveal">
+            <span className="eyebrow">About us</span>
+            <h2 style={{ fontSize: "clamp(1.9rem,3.6vw,2.7rem)", margin: ".9rem 0 1.1rem" }}>
+              Your preferred IT &amp; technology partner
+            </h2>
+            <p className="body-p">
+              For nearly two decades, businesses have trusted SysInteractive
+              to manage, secure, and modernize their technology. From
+              day-to-day support to full-scale software builds, one
+              accountable team handles it all.
+            </p>
+            <p className="body-p">
+              Our engineers really get to know your operation, so the
+              solutions we recommend fit your real needs, not a generic
+              playbook.
+            </p>
+            <ul className="checklist">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Committed to reliable, high-quality IT services
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Delivered by experts across every critical system
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                Focused on the true needs of your business
+              </li>
+            </ul>
+            <Link href="/about" className="btn btn-primary">
+              Learn more about us
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ===== SERVICES ===== */}
-      <section id="services">
-        <div className="sec-label">
-          <span className="idx">(01)</span> What We Do <span className="ln" />
-        </div>
-        <h2 className="big rv">
-          Six disciplines.
-          <br />
-          One obsessive studio.
-        </h2>
-        <p className="lead rv">
-          From the first pixel to the last server config — every layer of the
-          modern web stack, owned end to end by one accountable team.
-        </p>
-        <div className="svc-wrap">
-          {services.map((s) => (
-            <div className="tilt" key={s.title}>
-              <div className="svc glass" data-cur="big">
-                <div className="glow" />
-                <div className="no">{s.no}</div>
-                <div className="ico">{s.icon}</div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-                <div className="tags">
-                  {s.tags.map((tag) => (
-                    <i key={tag}>{tag}</i>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== BIG MARQUEE ===== */}
-      <div className="big-marq">
-        <div className="bt" id="bigmarq">
-          {[0, 1].map((i) => (
-            <span key={i}>
-              FRONTEND <span className="star">✦</span> <em>BACKEND</em>{" "}
-              <span className="star">✦</span> CLOUD{" "}
-              <span className="star">✦</span> <em>DEVOPS</em>{" "}
-              <span className="star">✦</span> WORDPRESS{" "}
-              <span className="star">✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ===== TECH ===== */}
-      <section id="tech">
-        <div className="sec-label">
-          <span className="idx">(02)</span> Our Stack <span className="ln" />
-        </div>
-        <h2 className="big rv">Tools we&apos;ve mastered.</h2>
-        <div className="tech-row">
-          {techStack.map((t) => (
-            <div className="tpill rv" key={t.label}>
-              <span
-                className="d"
-                style={{
-                  background: t.bg,
-                  color: t.color,
-                  border: t.border,
-                }}
-              >
-                {t.d}
-              </span>
-              {t.label}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== PROCESS (sticky) ===== */}
-      <section id="process">
-        <div className="sec-label">
-          <span className="idx">(03)</span> How We Work{" "}
-          <span className="ln" />
-        </div>
-        <div className="proc-grid">
-          <div className="proc-sticky">
-            <h2 className="big rv">
-              A process
-              <br />
-              built to ship.
-            </h2>
-            <div className="huge" id="procNum">
-              01
-            </div>
-            <p className="lead rv" style={{ marginTop: "14px" }}>
-              Six deliberate stages. No black boxes, no surprises — you see
-              progress every single week.
+      <section className="block tint">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow c">Our services</span>
+            <h2>Solutions &amp; focus areas</h2>
+            <p>
+              A full spectrum of IT services under one roof, so you have a
+              single, accountable partner for every layer of your technology.
             </p>
           </div>
-          <div className="proc-list" id="procList">
-            {processSteps.map((step, i) => (
-              <div className={`pi${i === 0 ? " active" : ""}`} key={step.n}>
-                <span className="n">{step.n}</span>
-                <div>
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
-                </div>
+          <div className="svc-grid">
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
               </div>
-            ))}
+              <h3>IT Management</h3>
+              <p>
+                Proactive monitoring, maintenance, and a 24/7 help desk that
+                keeps your systems healthy and your team productive.
+              </p>
+              <Link href="/services" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3>Cyber Security</h3>
+              <p>
+                Risk assessments, threat protection, and compliance support
+                that keep your data and reputation safe.
+              </p>
+              <Link href="/services" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                </svg>
+              </div>
+              <h3>Cloud Computing</h3>
+              <p>
+                Migration, management, and cost optimization across AWS,
+                Azure, and Google Cloud with zero downtime.
+              </p>
+              <Link href="/services" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              <h3>Software Development</h3>
+              <p>
+                Custom web and mobile applications built by senior engineers,
+                from first prototype to production and beyond.
+              </p>
+              <Link href="/development" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" />
+                </svg>
+              </div>
+              <h3>DevOps &amp; Infrastructure</h3>
+              <p>
+                CI/CD pipelines, automation, and infrastructure-as-code that
+                make deployments fast, safe, and repeatable.
+              </p>
+              <Link href="/services" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+            <div className="svc reveal">
+              <div className="si">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 3v18h18" />
+                  <path d="M7 15v-4M12 15V8M17 15v-6" />
+                </svg>
+              </div>
+              <h3>Data &amp; Analytics</h3>
+              <p>
+                Data pipelines, dashboards, and BI that turn the information
+                you already have into confident decisions.
+              </p>
+              <Link href="/services" className="more">
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2.4rem" }}>
+            <Link href="/services" className="btn btn-primary">
+              View all services
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== WEB & MOBILE DEVELOPMENT ===== */}
+      <section className="block">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow c">Web &amp; mobile development</span>
+            <h2>Websites and apps, built to perform</h2>
+            <p>
+              From marketing sites to complex platforms and native mobile
+              apps, we design, build, and maintain digital products that are
+              fast, secure, and easy to grow.
+            </p>
+          </div>
+          <div className="dev-duo">
+            <div className="dev-card reveal">
+              <div className="dh">
+                <span className="di">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M2 8h20M6 5.5h.01M9 5.5h.01" />
+                  </svg>
+                </span>
+                <h3>Website Development</h3>
+              </div>
+              <p>
+                Responsive, SEO-ready websites and web applications built on
+                modern frameworks — quick to load, simple to manage, and
+                made to convert.
+              </p>
+              <ul className="dev-feats">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Corporate &amp; marketing sites
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Web apps &amp; customer portals
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  E-commerce &amp; online stores
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  CMS &amp; headless builds
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Performance &amp; SEO optimization
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Accessibility built in
+                </li>
+              </ul>
+              <div className="dev-tech">
+                <span className="tchip">React</span>
+                <span className="tchip">Next.js</span>
+                <span className="tchip">WordPress</span>
+                <span className="tchip">Node.js</span>
+                <span className="tchip">Tailwind</span>
+                <span className="tchip">Shopify</span>
+              </div>
+            </div>
+            <div className="dev-card reveal">
+              <div className="dh">
+                <span className="di">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9">
+                    <rect x="7" y="2" width="10" height="20" rx="2.5" />
+                    <path d="M11 18h2" />
+                  </svg>
+                </span>
+                <h3>Mobile App Development</h3>
+              </div>
+              <p>
+                Native and cross-platform mobile apps that feel great on
+                every device — from concept and design through App Store
+                launch and ongoing updates.
+              </p>
+              <ul className="dev-feats">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  iOS &amp; Android native apps
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Cross-platform builds
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  App Store &amp; Play deployment
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Push, offline &amp; real-time
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Secure API integrations
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  Maintenance &amp; updates
+                </li>
+              </ul>
+              <div className="dev-tech">
+                <span className="tchip">React Native</span>
+                <span className="tchip">Flutter</span>
+                <span className="tchip">Swift</span>
+                <span className="tchip">Kotlin</span>
+                <span className="tchip">Firebase</span>
+                <span className="tchip">GraphQL</span>
+              </div>
+            </div>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2.4rem" }}>
+            <Link href="/development" className="btn btn-primary">
+              Explore development
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== TECH STACK MARQUEE ===== */}
+      <TechSlider />
+
+      {/* ===== DIGITAL MARKETING ===== */}
+      <section className="block tint">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow c">Digital marketing &amp; SEO</span>
+            <h2>Get found, get clicks, get customers</h2>
+            <p>
+              Building a great site is only half the job. Our marketing team
+              drives the right people to it with data-led SEO, paid ads, and
+              content that converts.
+            </p>
+          </div>
+          <div className="growth-row">
+            <div className="growth reveal">
+              <span className="gi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 17l6-6 4 4 8-8" />
+                  <path d="M17 7h4v4" />
+                </svg>
+              </span>
+              <div>
+                <b>
+                  +180<span className="plus">%</span>
+                </b>
+                <small>Avg. organic traffic growth</small>
+              </div>
+            </div>
+            <div className="growth reveal">
+              <span className="gi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </span>
+              <div>
+                <b>
+                  3.2<span className="plus">×</span>
+                </b>
+                <small>Return on ad spend</small>
+              </div>
+            </div>
+            <div className="growth reveal">
+              <span className="gi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9H4a2 2 0 0 0 0 4h2M18 9h2a2 2 0 0 1 0 4h-2M8 12h8" />
+                  <path d="M12 2v4M12 18v4" />
+                </svg>
+              </span>
+              <div>
+                <b>Top&nbsp;3</b>
+                <small>Search rankings delivered</small>
+              </div>
+            </div>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2.4rem" }}>
+            <Link href="/marketing" className="btn btn-primary">
+              See marketing services
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ===== STATS BAND ===== */}
-      <div className="band">
-        <div className="band-in rv">
-          <div className="bs">
-            <div className="n fill-grad" data-count="150" data-suf="+">
-              0
+      <section className="block stats">
+        <div className="wrap">
+          <div className="stat-grid">
+            <div className="s reveal">
+              <b>
+                <AnimatedCounter end={20} suffix="" /><span className="plus">+</span>
+              </b>
+              <span>Years in business</span>
             </div>
-            <div className="l">PROJECTS SHIPPED</div>
-          </div>
-          <div className="bs">
-            <div className="n fill-grad" data-count="98" data-suf="%">
-              0
+            <div className="s reveal">
+              <b>
+                <AnimatedCounter end={130} suffix="" /><span className="plus">+</span>
+              </b>
+              <span>Certified engineers</span>
             </div>
-            <div className="l">CLIENT SATISFACTION</div>
-          </div>
-          <div className="bs">
-            <div className="n fill-grad" data-count="12" data-suf="">
-              0
+            <div className="s reveal">
+              <b>
+                <AnimatedCounter end={500} suffix="" /><span className="plus">+</span>
+              </b>
+              <span>Projects delivered</span>
             </div>
-            <div className="l">COUNTRIES SERVED</div>
+            <div className="s reveal">
+              <b>
+                <AnimatedCounter end={98} suffix="" /><span className="plus">%</span>
+              </b>
+              <span>Client retention</span>
+            </div>
           </div>
-          <div className="bs">
-            <div className="n fill-grad">24/7</div>
-            <div className="l">SUPPORT &amp; MONITORING</div>
-          </div>
-        </div>
-      </div>
-
-      {/* ===== WORK ===== */}
-      <section id="work">
-        <div className="sec-label">
-          <span className="idx">(04)</span> Selected Work{" "}
-          <span className="ln" />
-        </div>
-        <h2 className="big rv">
-          Projects that
-          <br />
-          speak for us.
-        </h2>
-        <PortfolioGrid projects={portfolio} />
-        <div className="pf-more rv">
-          <p>150+ WordPress projects delivered — this is a curated sample.</p>
-          <a
-            className="mag"
-            href="https://www.fiverr.com/s/YRbxv3l"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cur="big"
-          >
-            See Verified Reviews on Fiverr ↗
-          </a>
         </div>
       </section>
 
-      {/* ===== TEAM ===== */}
-      <section id="team">
-        <div className="sec-label">
-          <span className="idx">(05)</span> The Team <span className="ln" />
-        </div>
-        <h2 className="big rv">
-          Four people.
-          <br />
-          Zero handoffs.
-        </h2>
-        <p className="lead rv">
-          No account managers, no outsourcing chain — the people who plan
-          your project are the people who build it.
-        </p>
-        <div className="team-grid">
-          {team.map((m) => (
-            <div className="team-card glass rv" key={m.name}>
-              <div className="team-avatar">
-                <span className="fill-grad">{m.initials}</span>
+      {/* ===== CASE STUDIES ===== */}
+      <section className="block">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow c">Case studies</span>
+            <h2>IT solutions &amp; projects</h2>
+            <p>A look at how we help organizations run leaner, safer, and faster.</p>
+          </div>
+          <div className="case-grid">
+            <article className="case reveal">
+              <div className="thumb g1">
+                <span className="cat">IT Management</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
               </div>
-              <h3>{m.name}</h3>
-              <span className="role">{m.role}</span>
-              <p>{m.bio}</p>
-            </div>
-          ))}
+              <div className="cbody">
+                <h3>Workflow management platform</h3>
+                <p>
+                  Consolidated a manufacturer&apos;s scattered tools into one
+                  monitored platform, cutting resolution time by more than
+                  half.
+                </p>
+                <Link href="/contact" className="more">
+                  View details
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
+            <article className="case reveal">
+              <div className="thumb g2">
+                <span className="cat">Cloud Computing</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                </svg>
+              </div>
+              <div className="cbody">
+                <h3>Cloud migration for finance</h3>
+                <p>
+                  Moved a financial services firm off aging servers to a
+                  secure cloud setup, reducing infrastructure costs by 34%.
+                </p>
+                <Link href="/contact" className="more">
+                  View details
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
+            <article className="case reveal">
+              <div className="thumb g3">
+                <span className="cat">Software Development</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              <div className="cbody">
+                <h3>Custom software for logistics</h3>
+                <p>
+                  Built a real-time dispatch and tracking system that
+                  replaced 40 spreadsheets and scaled to thousands of daily
+                  jobs.
+                </p>
+                <Link href="/contact" className="more">
+                  View details
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
+          </div>
+          <div style={{ textAlign: "center", marginTop: "2.4rem" }}>
+            <Link href="/portfolio" className="btn btn-primary">
+              View all projects
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section id="testimonials">
-        <div className="sec-label">
-          <span className="idx">(06)</span> Client Voices{" "}
-          <span className="ln" />
-        </div>
-        <h2 className="big rv">
-          Trusted by teams
-          <br />
-          who ship.
-        </h2>
-        <div className="tst-grid">
-          {testimonials.map((t) => (
-            <div className={`tst glass rv ${t.delay}`} key={t.name}>
-              <div className="stars">★★★★★</div>
-              <p>&quot;{t.quote}&quot;</p>
-              <div className="who">
-                <span className="av">{t.initials}</span>
-                <div>
-                  <b>{t.name}</b>
-                  <span>{t.role}</span>
+      <section className="block tint">
+        <div className="wrap">
+          <div className="sec-head center reveal">
+            <span className="eyebrow c">Testimonials</span>
+            <h2>What clients say about us</h2>
+          </div>
+          <div className="testi-grid">
+            {[
+              {
+                initials: "AF",
+                name: "Abbi Finnegan",
+                role: "CEO, Northgate Retail",
+                quote:
+                  "SysInteractive became an extension of our team overnight. Response times dropped and we finally stopped worrying about downtime.",
+              },
+              {
+                initials: "MD",
+                name: "Marianna Dudley",
+                role: "Co-Founder, HCM Group",
+                quote:
+                  "Their team migrated us to the cloud without a single hour of downtime. Clear communication from start to finish.",
+              },
+              {
+                initials: "HB",
+                name: "Henley Burch",
+                role: "Founder, Meridian Logistics",
+                quote:
+                  "The custom software they built runs our whole operation now. Delivered on time and still supported months later.",
+              },
+            ].map((t) => (
+              <div className="tcard reveal" key={t.name}>
+                <div className="stars">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 18.5 5.4 21.2 6.7 14.2 1.7 9.4l7-.9z" />
+                    </svg>
+                  ))}
+                </div>
+                <p>{t.quote}</p>
+                <div className="who">
+                  <span className="av">{t.initials}</span>
+                  <div>
+                    <b>{t.name}</b>
+                    <small>{t.role}</small>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ===== CTA / CONTACT ===== */}
-      <div className="cta" id="contact">
-        <div className="cta-in">
-          <div className="aura" />
-          <div className="sec-label rv" style={{ justifyContent: "center" }}>
-            <span className="ln" /> Let&apos;s build <span className="ln" />
-          </div>
-          <h2 className="rv">
-            Got a project
-            <br />
-            worth building?
-          </h2>
-          <p className="rv">
-            Free consultation. Transparent quotes. On-time delivery,
-            guaranteed.
-          </p>
-
-          <div className="cta-grid">
-            <ContactForm />
-
-            <div className="cta-info rv">
-              <div className="cta-info-item">
-                <span className="lbl">Email</span>
-                <a href="mailto:info@sysinteractive.com">
-                  info@sysinteractive.com
-                </a>
-              </div>
-              <div className="cta-info-item">
-                <span className="lbl">Phone</span>
-                <a href="tel:+923001234567">+92 300 1234567</a>
-              </div>
-              <div className="cta-info-item">
-                <span className="lbl">Location</span>
-                <span className="val">Lahore, Pakistan</span>
-              </div>
-              <div className="cta-info-item">
-                <span className="lbl">Response Time</span>
-                <span className="val">Within 24 hours</span>
-              </div>
-            </div>
+      {/* ===== TRUSTED BY ===== */}
+      <section className="block" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <p className="lbl">Trusted by growing organizations</p>
+          <div className="logo-row reveal">
+            <span className="lg">Northgate</span>
+            <span className="lg">HCM Group</span>
+            <span className="lg">Meridian</span>
+            <span className="lg">Squarepix</span>
+            <span className="lg">Parkabl</span>
+            <span className="lg">Domoo</span>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer>
-        <div className="f-in">
-          <div className="f-brand">
-            <div className="big-s fill-grad">SYSINTERACTIVE</div>
-            <p>Full-spectrum IT studio — engineering the web end to end.</p>
-            <p style={{ color: "#5D5C82", fontSize: "12.5px", marginTop: "12px" }}>
-              Frontend · Backend · Cloud · WordPress
+      {/* ===== CTA ===== */}
+      <section className="block">
+        <div className="wrap">
+          <div className="cta-band reveal">
+            <h2>Ready to move your technology forward?</h2>
+            <p>
+              Tell us what you&apos;re working on and we&apos;ll get back
+              within one business day with clear next steps.
             </p>
-            <div className="socs">
-              <a href="#">f</a>
-              <a href="#">𝕏</a>
-              <a href="#">in</a>
-              <a href="#">⌥</a>
+            <div className="cta-actions">
+              <Link href="/contact" className="btn btn-white">
+                Request a consultation
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+              <a href="tel:+15550102020" className="btn btn-outline-w">
+                Call +1 (555) 010-2020
+              </a>
             </div>
           </div>
-          <div>
-            <h5>Navigate</h5>
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div>
-            <h5>Services</h5>
-            <a href="#services">Frontend</a>
-            <a href="#services">Backend</a>
-            <a href="#services">Full Stack</a>
-            <a href="#services">AWS Cloud</a>
-            <a href="#services">WordPress</a>
-          </div>
-          <div>
-            <h5>Get in touch</h5>
-            <p>📍 Lahore, Pakistan</p>
-            <p>📞 +92 300 1234567</p>
-            <p>✉️ info@sysinteractive.com</p>
-            <p>🕘 Mon–Sat · 9AM–6PM</p>
-          </div>
         </div>
-        <div className="f-low">
-          <span>© 2026 SYSINTERACTIVE — ALL RIGHTS RESERVED</span>
-          <span>PRIVACY · TERMS</span>
-        </div>
-      </footer>
+      </section>
     </>
   );
 }
