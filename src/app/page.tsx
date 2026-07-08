@@ -8,8 +8,6 @@ export default function Home() {
     <>
       {/* ===== HERO ===== */}
       <section className="hero">
-        <div className="blob blob-1" />
-        <div className="blob blob-2" />
         <div className="wrap hero-grid">
           <div className="reveal">
             <span className="badge">
@@ -185,7 +183,7 @@ export default function Home() {
         <div className="wrap">
           <div className="sec-head center reveal">
             <span className="eyebrow c">Our services</span>
-            <h2>Solutions &amp; <span className="grad-text">focus areas</span></h2>
+            <h2>Solutions &amp; focus areas</h2>
             <p>
               A full spectrum of IT services under one roof, so you have a
               single, accountable partner for every layer of your technology.
@@ -728,7 +726,7 @@ export default function Home() {
                 </svg>
               </Link>
               <a href="tel:+15550102020" className="btn btn-outline-w">
-                Call +1 (555) 010-2020
+                Call +1 (800) 774-2020
               </a>
             </div>
           </div>

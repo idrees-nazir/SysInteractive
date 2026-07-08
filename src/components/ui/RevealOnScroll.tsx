@@ -14,7 +14,7 @@ export default function RevealOnScroll() {
 
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(".reveal,.reveal-left,.reveal-right,.reveal-zoom,.reveal-rotate")
+      document.querySelectorAll<HTMLElement>(".reveal")
     );
 
     if (elements.length === 0) return;
